@@ -68,6 +68,18 @@ class UserService {
         }
     }
 
+    checkPassword(userInputPlainPassword, encryptedPassword) {
+        try {
+            return bcrypt.compareSync(
+                userInputPlainPassword,
+                encryptedPassword
+            );
+        } catch (error) {
+            console.log("something went wrong while password verification");
+            throw error;
+        }
+    }
+
     
 }
 
