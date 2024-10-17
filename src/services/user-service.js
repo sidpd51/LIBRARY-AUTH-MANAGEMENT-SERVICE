@@ -30,6 +30,7 @@ class UserService {
                 throw {error: 'incorrect pwd '}
             }
             const newJWT = this.createToken({email: user.email,id:user.id})
+            return newJWT
          } catch (error) {
             console.log("something went wrong in the sigin process");
             throw error;
