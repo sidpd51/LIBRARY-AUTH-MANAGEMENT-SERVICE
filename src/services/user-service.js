@@ -18,6 +18,15 @@ class UserService {
         }
     }
 
+    async signin(email, plainPassword){
+         try {
+            
+         } catch (error) {
+            console.log("something went wrong in the sigin process");
+            throw error;
+         }
+    }
+
     createToken(user) {
         try {
             const result = jwt.sign(user, JWT_KEY, { expiresIn: "5d" });
@@ -49,6 +58,8 @@ class UserService {
             throw error;
         }
     }
+
+    
 }
 
 module.exports = UserService;
