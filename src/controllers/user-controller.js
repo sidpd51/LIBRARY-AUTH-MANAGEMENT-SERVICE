@@ -29,7 +29,7 @@ const signIn = async (req, res) => {
     try {
         const response = await userService.signin(req.body.email,req.body.password); 
         return res.status(201).json({
-            message: "Successfully logged in",
+            message: "Successfully signed in",
             data: response,
             success: true,
             error: {},
