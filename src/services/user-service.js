@@ -69,18 +69,24 @@ class UserService {
         }
     }
 
-    checkPassword(userInputPlainPassword, encryptedPassword) {
+
+    async isAuthenticated(token){
         try {
-            return bcrypt.compareSync(
-                userInputPlainPassword,
-                encryptedPassword
-            );
+            const response = this.verifyToken(token)
+            
+            if(!response){
+                throw { error: 'Invalid token'}
+            }
+            const user = this.userRepository.getById(response.id)
+            if(!user){
+                throw {error: 'No users with the corresponding token exists'};
+            }
+            return user.id
         } catch (error) {
-            console.log("something went wrong while password verification");
+            console.log("something went wrong while Authentication");
             throw error;
         }
     }
-
     
 }
 
