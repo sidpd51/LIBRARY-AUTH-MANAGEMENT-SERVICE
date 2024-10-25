@@ -57,7 +57,7 @@ class UserRepository {
     async isAdmin(userId) {
         try {
             const user = await User.findByPk(userId);
-            const adminRole = await Role.find({
+            const adminRole = await Role.findOne({
                 where: {
                     name: "ADMIN",
                 },
@@ -65,7 +65,7 @@ class UserRepository {
             return user.hasRole(adminRole);
         } catch (error) {
             console.log(
-                "something went wrong while getting user through email"
+                "something went wrong while getting user is admin or not"
             );
             throw error;
         }
