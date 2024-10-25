@@ -25,11 +25,13 @@ class UserService {
                 //throw error
             }
             const passwordMatch = this.checkPassword(plainPassword, user.password)
+            
             if(!passwordMatch){
                 console.log("Password doesn't match")
                 throw {error: 'incorrect pwd '}
             }
             const newJWT = this.createToken({email: user.email,id:user.id})
+            
             return newJWT
          } catch (error) {
             console.log("something went wrong in the sigin process");
@@ -40,6 +42,7 @@ class UserService {
     createToken(user) {
         try {
             const result = jwt.sign(user, JWT_KEY, { expiresIn: "5d" });
+            
             return result;
         } catch (error) {
             console.log("something went wrong while token creation");
