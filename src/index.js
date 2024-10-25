@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { PORT } = require("./config/serverConfig.js");
+const { PORT,DB_SYNC } = require("./config/serverConfig.js");
 const ApiRoutes = require("./routes/index.js");
 const db = require("./models/index.js");
 
@@ -13,9 +13,9 @@ const setupAndStartServer = () => {
 
     app.listen(PORT, () => {
         console.log(`server is listening on port no: ${PORT}`);
-        // if (process.env.DB_SYNC) {
-        //     db.sequelize.sync({ alter: true });
-        // }
+        if (DB_SYNC) {
+            db.sequelize.sync({ alter: true });
+        }
     });
 };
 
